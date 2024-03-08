@@ -1,0 +1,7 @@
+
+//mongodb bongoTravel User name and password
+user : asshovo98
+pass : r7Bs4WZ1ik8yWwCM
+
+// mongodb connecting url
+mongodb+srv://asshovo98:<password>@bongotravel.cwp7zbv.mongodb.net/?retryWrites=true&w=majority&appName=bongoTravel
