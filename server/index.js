@@ -20,9 +20,10 @@ console.log(uri)
 
 async function run() {
     try {
-        await client.connect();
-        const database = client.db('bongoTour');
-        const tourCollection = database.collection('tourSpot');
+        await client.connect(); // database connection 
+        const database = client.db('bongoTravels'); // database name
+        // Collection Name
+        const tourCollection = database.collection('tourCollection');
         const tourGuidCollection = database.collection('tourGuid');
         const tourUserCollection = database.collection('tourUser');
 

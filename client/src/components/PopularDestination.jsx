@@ -8,7 +8,7 @@ const PopularDestination = () => {
 
   //Data fetching 
   useEffect(() => {
-    fetch('/popular-destination.json')
+    fetch('http://localhost:5000/tourService')
       .then((res) => {
         return res.json();
       })

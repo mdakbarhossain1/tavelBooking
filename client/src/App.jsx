@@ -9,6 +9,7 @@ import ContactUs from './pages/ContactUs/ContactUs'
 import Explore from './pages/Explore/Explore'
 import Login from './pages/Login/Login'
 import Footer from './components/Footer'
+import Booking from './pages/Booking/Booking'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/booking/:id" element={<Booking />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/explore" element={<Explore />} />
