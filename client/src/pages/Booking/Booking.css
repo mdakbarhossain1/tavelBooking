@@ -1,0 +1,36 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.card-name{
+    font-size: 2.3rem;
+    font-weight: 600;
+}
+.card-dec{
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.tour-res-form{
+    padding: 150px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tour-heading{
+    font-size: 3.3rem;
+    font-weight: 400;
+}
+
+.form-res input{
+    display: block;
+    width: 400px;
+    margin: 15px 10px;
+    border: none;
+    border-bottom: 1px solid lightblue;
+}

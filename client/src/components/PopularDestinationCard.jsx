@@ -5,7 +5,7 @@ const PopularDestinationCard = ({ place }) => {
   console.log(place);
   return (
     <Col lg={3} md={3}>
-      <Link to={`/booking/${place.id}`}>
+      <Link to={`/booking/${place._id}`}>
         <div className="card-destination p-2 m-1">
           <div className="overflow-hidden" style={{ maxWidth: '300px' }}>
             <Image src={place.image} className='img-fluid object-fit-cover' />
