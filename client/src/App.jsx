@@ -10,25 +10,28 @@ import Explore from './pages/Explore/Explore'
 import Login from './pages/Login/Login'
 import Footer from './components/Footer'
 import Booking from './pages/Booking/Booking'
+import AuthProvider from './context/AuthProvider/AuthProvider'
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/booking/:id" element={<Booking />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<Notfound />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/booking/:id" element={<Booking />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Notfound />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </AuthProvider>
     </>
   )
 }
