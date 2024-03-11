@@ -26,8 +26,56 @@ async function run() {
         const tourCollection = database.collection('tourCollection');
         const tourGuidCollection = database.collection('tourGuid');
         const tourUserCollection = database.collection('tourUser');
+        const usersCollection = database.collection("users");
 
         console.log('connect');
+
+
+        // -------------------------------------------------
+        // add User And Users route
+
+        app.post('/users', async(req, res)=>{
+            const user = req.body;
+            const result = await usersCollection.insertOne(user)
+            res.json(user)
+        });
+
+        app.put('/users', async(req, res) =>{
+            const user = req.body;
+            const quary = {email : user.email};
+            console.log(user, quary);
+            const options = {upsert: true};
+            const updateDoc = {$set:{displayName: user.displayName}};
+            const result = await usersCollection.updateOne(quary, updateDoc, options);
+            res.json(result);
+
+        });
+        
+    // ______________________________________________________________________________________
+
+         // make Admin
+         app.put('/users/admin', async (req, res) => {
+            const user = req.body;
+            const filter = {email : user.email};
+            const updateDoc = {$set:{role: 'admin'}};
+            const result = await usersCollection.updateOne(filter, updateDoc);
+            res.json(result)
+        });
+
+        // Confirm to admin make admin
+        app.get('/users/:email', async(req, res)=>{
+            const email = req.params.email;
+            const quary = {email : email};
+            const user = await usersCollection.findOne(quary);
+            let isAdmin = false;
+            if(user?.role === 'admin'){
+                isAdmin = true;
+            }
+            res.json({admin: isAdmin})
+        });
+
+        // __________________________________________________________________
+
 
         // POST API // services Post
 
@@ -98,7 +146,7 @@ async function run() {
             res.send(result);
         })
 
-        // user Data delete API
+        // user Tour Data delete API
         app.delete('/userTour/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };

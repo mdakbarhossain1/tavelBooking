@@ -3,10 +3,14 @@ import { Button } from 'react-bootstrap';
 import { FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hook/useAuth';
+import { useState } from 'react';
 const Login = () => {
 
 
-    const { signInWithGoogle } = useAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const { signInWithGoogle, logOut, signInEmailPasswordUser, user } = useAuth();
     const handleGoogleLogin = () => {
         signInWithGoogle()
             .then(result => (
@@ -14,18 +18,34 @@ const Login = () => {
             ))
     }
 
+    const handleLogOut = () => {
+        logOut();
+        console.log('Logout')
+    }
+
+    const handleEmailLogin = (e) => {
+        e.preventDefault();
+        signInEmailPasswordUser(email, password)
+
+        console.log(user, "im from login")
+
+        setEmail('');
+        setPassword('');
+
+    }
+
     return (
         <div>
             <div className='my-5 mx-auto w-50'>
-                <form  >
+                <form onSubmit={handleEmailLogin}>
                     <h3 className='text-center custom-text-primary fw-bold my-3'>Please Sign In</h3>
                     <div className="mb-3 my-5">
                         <label htmlFor="exampleInputEmail1" className="form-label"><i className="fas fa-envelope-square custom-text-warning me-2"></i>E-mail</label>
-                        <input type="email" className="form-control" required />
+                        <input type="email" className="form-control" required value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleInputPassword1" className="form-label"><i className="fas fa-key custom-text-warning me-2"></i>Password</label>
-                        <input type="password" className="form-control" />
+                        <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
 
                     <div>
@@ -35,6 +55,8 @@ const Login = () => {
                         <p className=' mt-4'>Don&apos;t have an account?<Link to='/register'> Sign Up</Link></p>
                         <p className='text-danger fw-bold mt-4'>error</p>
                     </div>
+
+                    <div><button onClick={handleLogOut}>Logout</button></div>
 
                 </form>
             </div>

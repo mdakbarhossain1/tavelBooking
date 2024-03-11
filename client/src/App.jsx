@@ -11,6 +11,8 @@ import Login from './pages/Login/Login'
 import Footer from './components/Footer'
 import Booking from './pages/Booking/Booking'
 import AuthProvider from './context/AuthProvider/AuthProvider'
+import Register from './pages/Register/Register'
+import User from './pages/User/User'
 
 function App() {
 
@@ -27,6 +29,8 @@ function App() {
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/register" element={<Register />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
           <Footer />
