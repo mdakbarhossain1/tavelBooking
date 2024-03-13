@@ -28,7 +28,6 @@ const Header = () => {
                                 <span className="user-name" onClick={()=>navigation("/user")}>{user?.displayName}</span> <Button variant="warning"  className="button" onClick={handleLogout}>Logout</Button></div> : <Nav.Link as={Link} to="/login">Login</Nav.Link>
                             }
                             
-
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

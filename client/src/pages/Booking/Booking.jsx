@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { useForm,  } from "react-hook-form";
+import { useForm, } from "react-hook-form";
 import "./Booking.css"
+import useAuth from "../../hook/useAuth";
 
 const Booking = () => {
     const { id } = useParams();
-    
+    const { user } = useAuth();
+
     const [tourSpot, setTourSpot] = useState();
 
-    
+
     useEffect(() => {
         fetch(`http://localhost:5000/tourService/${id}`)
             .then(res => res.json())
@@ -18,30 +20,28 @@ const Booking = () => {
             })
     }, [id]);
 
-console.log(tourSpot)
-    
+    console.log(tourSpot)
+
     const { register, handleSubmit, reset } = useForm();
-    const onSubmit = data =>{
+    const onSubmit = data => {
         data.status = 'pending';
-         console.log(data)
-         fetch('http://localhost:5000/tourManage',{
-             method: "POST",
-             headers:{"content-type": "application/json"},
-             body: JSON.stringify(data)
-         })
-         .then(res => res.json())
-         .then(result => {
-             console.log(result);
-             if(result.acknowledged){
-                 alert("Congratulations");
-                 reset()
+        console.log(data)
+        fetch('http://localhost:5000/tourManage', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result);
+                if (result.acknowledged) {
+                    alert("Congratulations");
+                    reset()
 
-             }
+                }
 
-         })
-        };
-const user = true;
-
+            })
+    };
 
 
     return (

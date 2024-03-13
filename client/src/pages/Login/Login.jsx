@@ -10,24 +10,32 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // let location = useLocation();
+    
+
+
+
     const { signInWithGoogle, logOut, signInEmailPasswordUser, user } = useAuth();
     const handleGoogleLogin = () => {
         signInWithGoogle()
-            .then(result => (
-                console.log(result.user)
-            ))
+            
+         
+                
+                // location('/')
+                
     }
 
     const handleLogOut = () => {
         logOut();
-        console.log('Logout')
+        // console.log('Logout')
+        // location('/');
     }
 
     const handleEmailLogin = (e) => {
         e.preventDefault();
         signInEmailPasswordUser(email, password)
 
-        console.log(user, "im from login")
+        // console.log(user, "im from login")
 
         setEmail('');
         setPassword('');
