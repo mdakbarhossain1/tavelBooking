@@ -42,7 +42,7 @@ async function run() {
         app.put('/users', async(req, res) =>{
             const user = req.body;
             const quary = {email : user.email};
-            console.log(user, quary);
+            // console.log(user, quary);
             const options = {upsert: true};
             const updateDoc = {$set:{displayName: user.displayName}};
             const result = await usersCollection.updateOne(quary, updateDoc, options);
@@ -106,7 +106,7 @@ async function run() {
 
         app.get('/tourService/:id', async (req, res) => {
             const id = req.params.id;
-            console.log(id);
+            // console.log(id);
             const query = {_id: new ObjectId(id)};
             const result = await tourCollection.findOne(query);
             res.send(result);
