@@ -30,9 +30,8 @@ async function run() {
 
         console.log('connect');
 
-
-        // -------------------------------------------------
-        // add User And Users route
+ // -------------------------------------------------
+        // add User
 
         app.post('/users', async(req, res)=>{
             const user = req.body;
