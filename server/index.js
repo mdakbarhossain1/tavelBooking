@@ -49,6 +49,15 @@ async function run() {
             res.json(result);
 
         });
+
+
+        // All user 
+        app.get('/users', async (req, res) => {
+            const cursor = usersCollection.find({});
+            // console.log(cursor)
+            const result = await cursor.toArray();
+            res.send(result);
+        })
         
     // ______________________________________________________________________________________
 
@@ -101,6 +110,21 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result);
         })
+
+
+        // aproved Orders 
+        app.put('/myOrders/:id', async (req, res) => {
+            const id = req.params.id;
+            const quary = { _id: ObjectId(id) };
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    status: "success"
+                },
+            };
+            const result = await ordersCollection.updateOne(quary, updateDoc, options);
+            res.json(result);
+        });
 
         // single data API
 

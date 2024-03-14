@@ -1,12 +1,17 @@
+import { Button } from "react-bootstrap";
 import useAuth from "../../hook/useAuth"
+import { Link } from "react-router-dom";
 
 const User = () => {
-    const {user} = useAuth();
-    console.log(user)
+  const { user } = useAuth();
+  console.log(user)
   return (
     <div>
-        {user.email}
-
+      {user.email}
+      <div>
+        <Button as={Link} to={'/allorders'}>All Orders</Button>
+        <Button as={Link} to={'/alluser'}>All User</Button>
+      </div>
     </div>
   )
 }
