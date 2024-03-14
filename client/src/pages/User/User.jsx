@@ -11,6 +11,7 @@ const User = () => {
       <div>
         <Button as={Link} to={'/allorders'}>All Orders</Button>
         <Button as={Link} to={'/alluser'}>All User</Button>
+        <Button as={Link} to={'/myorders'}>My Orders</Button>
       </div>
     </div>
   )

@@ -30,21 +30,21 @@ async function run() {
 
         console.log('connect');
 
- // -------------------------------------------------
+        // -------------------------------------------------
         // add User
 
-        app.post('/users', async(req, res)=>{
+        app.post('/users', async (req, res) => {
             const user = req.body;
             const result = await usersCollection.insertOne(user)
             res.json(user)
         });
 
-        app.put('/users', async(req, res) =>{
+        app.put('/users', async (req, res) => {
             const user = req.body;
-            const quary = {email : user.email};
+            const quary = { email: user.email };
             // console.log(user, quary);
-            const options = {upsert: true};
-            const updateDoc = {$set:{displayName: user.displayName}};
+            const options = { upsert: true };
+            const updateDoc = { $set: { displayName: user.displayName } };
             const result = await usersCollection.updateOne(quary, updateDoc, options);
             res.json(result);
 
@@ -58,28 +58,28 @@ async function run() {
             const result = await cursor.toArray();
             res.send(result);
         })
-        
-    // ______________________________________________________________________________________
 
-         // make Admin
-         app.put('/users/admin', async (req, res) => {
+        // ______________________________________________________________________________________
+
+        // make Admin
+        app.put('/users/admin', async (req, res) => {
             const user = req.body;
-            const filter = {email : user.email};
-            const updateDoc = {$set:{role: 'admin'}};
+            const filter = { email: user.email };
+            const updateDoc = { $set: { role: 'admin' } };
             const result = await usersCollection.updateOne(filter, updateDoc);
             res.json(result)
         });
 
         // Confirm to admin make admin
-        app.get('/users/:email', async(req, res)=>{
+        app.get('/users/:email', async (req, res) => {
             const email = req.params.email;
-            const quary = {email : email};
+            const quary = { email: email };
             const user = await usersCollection.findOne(quary);
             let isAdmin = false;
-            if(user?.role === 'admin'){
+            if (user?.role === 'admin') {
                 isAdmin = true;
             }
-            res.json({admin: isAdmin})
+            res.json({ admin: isAdmin })
         });
 
         // __________________________________________________________________
@@ -115,14 +115,14 @@ async function run() {
         // aproved Orders 
         app.put('/myOrders/:id', async (req, res) => {
             const id = req.params.id;
-            const quary = { _id: ObjectId(id) };
+            const quary = { _id: new ObjectId(id) };
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
                     status: "success"
                 },
             };
-            const result = await ordersCollection.updateOne(quary, updateDoc, options);
+            const result = await tourUserCollection.updateOne(quary, updateDoc, options);
             res.json(result);
         });
 
@@ -131,7 +131,7 @@ async function run() {
         app.get('/tourService/:id', async (req, res) => {
             const id = req.params.id;
             // console.log(id);
-            const query = {_id: new ObjectId(id)};
+            const query = { _id: new ObjectId(id) };
             const result = await tourCollection.findOne(query);
             res.send(result);
         })

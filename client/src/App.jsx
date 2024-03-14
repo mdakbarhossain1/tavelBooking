@@ -16,6 +16,7 @@ import User from './pages/User/User'
 import PrivateRouteUser from './components/PrivateRoute/PrivateRouteUser'
 import AllOrders from './pages/AllOrders/AllOrders'
 import AllUser from './pages/AllUser/AllUser'
+import MyOrders from './pages/MyOrders/MyOrders'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/user" element={<User />} />
             <Route path="/allorders" element={<AllOrders />} />
+            <Route path="/myorders" element={<MyOrders />} />
             <Route path="/allUser" element={<AllUser />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<Notfound />} />

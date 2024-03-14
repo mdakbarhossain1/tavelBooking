@@ -84,7 +84,7 @@ const AllOrders = () => {
                             <td>{item.email}</td>
                             <td>{item.destination}</td>
                             <td>{item.message}</td>
-                            <td><button className="btn btn-primary" onClick={() => handleUserUpdate(item._id)}>Aproved</button></td>
+                            <td>{item?.status === "success" ? <button className="btn btn-success">Aproved</button> : <button className="btn btn-primary" onClick={() => handleUserUpdate(item._id)}>Aproved</button>}</td>
                             <td><button onClick={() => handleDelete(item._id)} className="btn btn-danger">Delete</button></td>
                         </tr>
                     ))}
