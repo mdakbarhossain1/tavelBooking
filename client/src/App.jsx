@@ -19,6 +19,7 @@ import AllUser from './pages/AllUser/AllUser'
 import MyOrders from './pages/MyOrders/MyOrders'
 import AddTourPlace from './pages/AddTourPlace/AddTourPlace'
 import ManageTourPlace from './pages/ManageTourPlace/ManageTourPlace'
+import UpdateTourPlace from './pages/UpdateTourPlace/UpdateTourPlace'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
             <Route path="/myorders" element={<MyOrders />} />
             <Route path="/addtourplace" element={<AddTourPlace />} />
             <Route path="/managetourplace" element={<ManageTourPlace />} />
+            <Route path="/updatetourplace/:id" element={<UpdateTourPlace />} />
             <Route path="/allUser" element={<AllUser />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<Notfound />} />

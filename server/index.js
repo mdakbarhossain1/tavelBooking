@@ -27,6 +27,7 @@ async function run() {
         const tourGuidCollection = database.collection('tourGuid');
         const tourUserCollection = database.collection('tourUser');
         const usersCollection = database.collection("users");
+        const productCollectionGpt = database.collection("productCollection");
 
         console.log('connect');
 
@@ -181,7 +182,7 @@ async function run() {
         // Update Data API
         app.put('/tourManage/:id', async (req, res) => {
             const id = req.params.id;
-            const query = { _id: ObjectId(id) };
+            const query = { _id: new ObjectId(id) };
             const updateData = req.body;
             const options = { upsert: true };
             const updateDoc = {
@@ -194,6 +195,24 @@ async function run() {
             res.send(result)
 
         })
+
+
+        // -------------------------------------------------------------------------
+        // Create update with GPT 
+        // -------------------------------------------------------------------------
+        app.post('/api/products', async (req, res)=>{
+            const cursor = req.body;
+            const result = await productCollectionGpt.insertOne(cursor);
+            res.send(result)
+        })
+
+        app.get('/api/products', async (req, res) => {
+            const cursor = productCollectionGpt.find({});
+            const result = await cursor.toArray();
+            res.send(result);
+        })
+
+
 
 
     }

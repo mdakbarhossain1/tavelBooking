@@ -63,7 +63,7 @@ const AllOrders = () => {
 
     return (
         <Container>
-            <h2>Manage Orders</h2>
+            <h2>Manage All Orders</h2>
             <table className="table">
                 <thead className="thead-dark">
                     <tr>

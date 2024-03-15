@@ -39,6 +39,10 @@ const ManageTourPlace = () => {
             })
     };
 
+    const handleUpdate = (id)=>{
+        navigate(`/updatetourplace/${id}`)
+    }
+
 
     const addProduct = () => {
         navigate('/addtourplace')
@@ -58,7 +62,8 @@ const ManageTourPlace = () => {
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Delete Product</th>
-                            <th>Add Product</th>
+                            <th>Update Tour Place</th>
+                            <th>Add Tour Place</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,6 +73,7 @@ const ManageTourPlace = () => {
                                 <td>{pd?.name}</td>
                                 <td>{pd?.price}</td>
                                 <td><button onClick={() => handleDelete(pd._id)} className="btn btn-danger">Delete</button></td>
+                                <td><button onClick={() => handleUpdate(pd._id)} className="btn btn-warning">Update</button></td>
                                 <td><button onClick={addProduct} className="btn btn-success">Add Product</button></td>
                             </tr>)
                         }
