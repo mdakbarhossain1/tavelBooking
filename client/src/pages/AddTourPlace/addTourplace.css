@@ -1,0 +1,29 @@
+.form-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.addTourSpot-form{
+    border: 1px solid lightblue;
+    background-color: rgb(255, 255, 255);
+    padding: 40px;
+    border-radius: 5px;
+}
+
+.addTourSpot-form input{
+    width: 250px;
+    display: block;
+    padding: 6px 0;
+    border: none;
+    border-bottom: 1px solid rgb(12, 89, 114);
+    margin: 10px 0;
+}
+
+.add-tour{
+    background-image: url('https://images.unsplash.com/photo-1530789253388-582c481c54b0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

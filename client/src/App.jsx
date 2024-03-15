@@ -17,6 +17,8 @@ import PrivateRouteUser from './components/PrivateRoute/PrivateRouteUser'
 import AllOrders from './pages/AllOrders/AllOrders'
 import AllUser from './pages/AllUser/AllUser'
 import MyOrders from './pages/MyOrders/MyOrders'
+import AddTourPlace from './pages/AddTourPlace/AddTourPlace'
+import ManageTourPlace from './pages/ManageTourPlace/ManageTourPlace'
 
 function App() {
 
@@ -36,6 +38,8 @@ function App() {
             <Route path="/user" element={<User />} />
             <Route path="/allorders" element={<AllOrders />} />
             <Route path="/myorders" element={<MyOrders />} />
+            <Route path="/addtourplace" element={<AddTourPlace />} />
+            <Route path="/managetourplace" element={<ManageTourPlace />} />
             <Route path="/allUser" element={<AllUser />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<Notfound />} />
