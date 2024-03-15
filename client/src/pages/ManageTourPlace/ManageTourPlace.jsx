@@ -10,7 +10,7 @@ const ManageTourPlace = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5000/tourManage')
+        fetch('http://localhost:5000/tourService')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
@@ -23,7 +23,7 @@ const ManageTourPlace = () => {
 
     const handleDelete = (id) => {
 
-        fetch(`http://localhost:5000/tourManage/${id}`, {
+        fetch(`http://localhost:5000/tourService/${id}`, {
             method: "DELETE",
             headers: { "content-type": "application/json" },
             body: JSON.stringify()
@@ -54,16 +54,19 @@ const ManageTourPlace = () => {
     return (
         <div>
             <h2>Manage Products{products.length}</h2>
+            <button onClick={addProduct} className="btn btn-success">Add Product</button>
             <Container>
                 <Table striped bordered hover responsive size="sm">
                     <thead>
                         <tr>
                             <th>NO</th>
                             <th>Product Name</th>
+                            <th>Location</th>
+                            <th>Trip Day</th>
                             <th>Price</th>
                             <th>Delete Product</th>
                             <th>Update Tour Place</th>
-                            <th>Add Tour Place</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -71,10 +74,12 @@ const ManageTourPlace = () => {
                             products?.map((pd, index) => <tr key={pd._id}>
                                 <td>{index + 1}</td>
                                 <td>{pd?.name}</td>
+                                <td>{pd?.location}</td>
+                                <td>{pd?.tripday}</td>
                                 <td>{pd?.price}</td>
                                 <td><button onClick={() => handleDelete(pd._id)} className="btn btn-danger">Delete</button></td>
                                 <td><button onClick={() => handleUpdate(pd._id)} className="btn btn-warning">Update</button></td>
-                                <td><button onClick={addProduct} className="btn btn-success">Add Product</button></td>
+                                
                             </tr>)
                         }
 

@@ -27,7 +27,6 @@ async function run() {
         const tourGuidCollection = database.collection('tourGuid');
         const tourUserCollection = database.collection('tourUser');
         const usersCollection = database.collection("users");
-        const productCollectionGpt = database.collection("productCollection");
 
         console.log('connect');
 
@@ -102,6 +101,30 @@ async function run() {
             res.send(result);
         })
 
+        app.put('/tourService/:id', async (req, res)=>{
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const updateData = req.body;
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: {
+                    name: updateData.name,
+                    email: updateData.email,
+                    image: updateData.image,
+                    location: updateData.location,
+                    price: updateData.price,
+                    tripday: updateData.tripday,
+                    dec: updateData.dec
+
+                },
+            };
+
+            const result = await tourCollection.updateOne(query, updateDoc, options)
+            // res.send(result)
+
+            // console.log(result);
+        })
+
 
         // Get API Guid
 
@@ -109,6 +132,14 @@ async function run() {
             const cursor = tourGuidCollection.find({});
 
             const result = await cursor.toArray();
+            res.send(result);
+        })
+
+        // user Tour Data delete API
+        app.delete('/tourGuid/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await tourGuidCollection.deleteOne(query);
             res.send(result);
         })
 
@@ -134,6 +165,13 @@ async function run() {
             // console.log(id);
             const query = { _id: new ObjectId(id) };
             const result = await tourCollection.findOne(query);
+            res.send(result);
+        })
+
+        app.delete('/tourService/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id:new ObjectId(id) };
+            const result = await tourCollection.deleteOne(query);
             res.send(result);
         })
 
@@ -200,18 +238,9 @@ async function run() {
         // -------------------------------------------------------------------------
         // Create update with GPT 
         // -------------------------------------------------------------------------
-        app.post('/api/products', async (req, res)=>{
-            const cursor = req.body;
-            const result = await productCollectionGpt.insertOne(cursor);
-            res.send(result)
-        })
 
-        app.get('/api/products', async (req, res) => {
-            const cursor = productCollectionGpt.find({});
-            const result = await cursor.toArray();
-            res.send(result);
-        })
 
+        
 
 
 

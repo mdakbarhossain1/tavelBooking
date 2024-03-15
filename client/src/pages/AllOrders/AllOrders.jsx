@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 
 const AllOrders = () => {
 
@@ -77,9 +77,9 @@ const AllOrders = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {orders?.map(item => (
+                    {orders?.map((item, index )=> (
                         <tr key={item._id}>
-                            <td>{item._id}</td>
+                            <td>{index + 1}</td>
                             <td>{item.name}</td>
                             <td>{item.email}</td>
                             <td>{item.destination}</td>
