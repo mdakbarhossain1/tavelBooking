@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import useAuth from "../../hook/useAuth";
 
 const Register = () => {
 
-    const {emailPasswordCreateUser,user} = useAuth();
+    const { emailPasswordCreateUser, setUser, updateUser, saveUser, setIsLoading } = useAuth();
 
     // State variables to store form data
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     // Function to handle form submission
     const handleSubmit = (e) => {
@@ -24,13 +28,31 @@ const Register = () => {
         };
 
         emailPasswordCreateUser(email, password, fullName,)
+            .then((result) => {
+                // Signed in 
+                setUser(result.user);
+                updateUser(fullName);
+                // -----------------
+                //save user to the database
+                saveUser(email, fullName, "POST");
+
+                navigate(from, {replace : true})
+                // navigate("/")
+                // ...
+                // console.log(user)
+            })
+            .catch((error) => {
+                console.log(error.message);
+                // ..
+            })
+            .finally(() => setIsLoading(false));
 
         // Log the form data to the console (you can send it to the server or perform any other actions)
         console.log(formData);
         setFullName('');
         setEmail('');
         setPassword('');
-        console.log(user)
+        // console.log(user)
     };
 
 

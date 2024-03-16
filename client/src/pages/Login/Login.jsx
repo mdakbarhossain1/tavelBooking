@@ -1,7 +1,7 @@
 
 import { Button } from 'react-bootstrap';
 import { FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hook/useAuth';
 import { useState } from 'react';
 const Login = () => {
@@ -10,19 +10,36 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+
     // let location = useLocation();
-    
 
 
 
-    const { signInWithGoogle, logOut, signInEmailPasswordUser, user } = useAuth();
+
+    const { googleSignIn, logOut, signInEmailPasswordUser, setUser, saveUser, setIsLoading } = useAuth();
     const handleGoogleLogin = () => {
-        signInWithGoogle()
-            
-         
-                
-                // location('/')
-                
+        googleSignIn()
+            .then(result => {
+                setUser(result.user);
+
+                // redirect 
+                // const destination = location?.state.from || '/';
+
+                saveUser(result.user?.email, result.user?.displayName, "PUT")
+                // navigate(from);
+
+                navigate(from, { replace: true });
+
+
+
+            })
+            .finally(() => setIsLoading(false));
+
+
     }
 
     const handleLogOut = () => {

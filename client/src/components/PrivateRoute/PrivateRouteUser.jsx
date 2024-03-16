@@ -1,24 +1,19 @@
-import { useEffect } from "react";
+
 import useAuth from "../../hook/useAuth"
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 const PrivateRouteUser = ({ Component }) => {
 
-    const navigate = useNavigate();
+    const { user } = useAuth();
+    const location = useLocation();
 
-    const {user} = useAuth();
 
-    useEffect(()=>{
-        if(!user.email){
-            navigate('/login')
-        }
-    })
-    return (
-        <>
-hi            <Component />
 
-        </>
-    )
+    if (user.email) {
+        return <Component />;
+    }
+    
+    return <Navigate to="/login" state={{from: location}} replace></Navigate>
 }
 
 export default PrivateRouteUser
