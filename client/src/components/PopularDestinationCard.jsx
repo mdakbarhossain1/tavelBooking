@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const PopularDestinationCard = ({ place }) => {
   console.log(place);
   return (
-    <Col lg={3} md={3}>
+    <Col lg={3} md={6} sm={6}>
       <Link to={`/booking/${place._id}`}>
         <div className="card-destination p-2 m-1">
           <div className="overflow-hidden" style={{ maxWidth: '300px' }}>

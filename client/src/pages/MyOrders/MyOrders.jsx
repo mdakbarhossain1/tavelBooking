@@ -1,6 +1,7 @@
-import { Container, Table } from "react-bootstrap"
+import { Container, Nav, Table } from "react-bootstrap"
 import useAuth from "../../hook/useAuth"
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MyOrders = () => {
 
@@ -41,6 +42,25 @@ const MyOrders = () => {
 
     return (
         <div>
+            <div>
+        <Nav fill variant="tabs" defaultActiveKey="/home">
+          <Nav.Item>
+            <Nav.Link as={Link} to="/allorders">All Orders</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={Link} to="/allUser">All User</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={Link} to="/addtourplace">Add Tour Place</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={Link} to="/managetourplace">Manage Tour Place</Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </div>
             <h1>My Orders</h1>
             <Container>
                 <Table striped bordered hover responsive size="sm">

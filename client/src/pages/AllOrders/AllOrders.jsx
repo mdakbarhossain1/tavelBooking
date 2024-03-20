@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { Container, Image } from "react-bootstrap";
+import { Container, Image, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const AllOrders = () => {
 
@@ -63,6 +64,26 @@ const AllOrders = () => {
 
     return (
         <Container>
+            <div>
+                <Nav fill variant="tabs" defaultActiveKey="/home">
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/allorders">All Orders</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/allUser">All User</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/addtourplace">Add Tour Place</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/managetourplace">Manage Tour Place</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+            </div>
+
             <h2>Manage All Orders</h2>
             <table className="table">
                 <thead className="thead-dark">
@@ -77,7 +98,7 @@ const AllOrders = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {orders?.map((item, index )=> (
+                    {orders?.map((item, index) => (
                         <tr key={item._id}>
                             <td>{index + 1}</td>
                             <td>{item.name}</td>

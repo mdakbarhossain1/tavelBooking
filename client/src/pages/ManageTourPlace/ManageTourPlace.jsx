@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap"
-import { useNavigate } from "react-router-dom";
+import { Container, Nav, Table } from "react-bootstrap"
+import { Link, useNavigate } from "react-router-dom";
 
 
 const ManageTourPlace = () => {
@@ -53,6 +53,26 @@ const ManageTourPlace = () => {
 
     return (
         <div>
+            <div>
+        <Nav fill variant="tabs" defaultActiveKey="/home">
+          <Nav.Item>
+            <Nav.Link as={Link} to="/allorders">All Orders</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={Link} to="/allUser">All User</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={Link} to="/addtourplace">Add Tour Place</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={Link} to="/managetourplace">Manage Tour Place</Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </div>
+            
             <h2>Manage Products{products.length}</h2>
             <button onClick={addProduct} className="btn btn-success">Add Product</button>
             <Container>

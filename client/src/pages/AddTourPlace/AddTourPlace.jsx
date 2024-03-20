@@ -1,7 +1,8 @@
-import { Container } from "react-bootstrap"
+import { Container, Nav } from "react-bootstrap"
 import useAuth from "../../hook/useAuth";
 import { useForm } from "react-hook-form";
 import './addTourplace.css';
+import { Link } from "react-router-dom";
 
 const AddTourPlace = () => {
 
@@ -31,6 +32,25 @@ const AddTourPlace = () => {
 
     return (
         <div className="add-tour">
+            <div>
+                <Nav fill variant="tabs" defaultActiveKey="/home">
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/allorders">All Orders</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/allUser">All User</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/addtourplace">Add Tour Place</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link as={Link} to="/managetourplace">Manage Tour Place</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+            </div>
             <h1 className="text-center title">ADD TOUR SPOT</h1>
             <Container className="form-body">
                 <form onSubmit={handleSubmit(onSubmit)} className="addTourSpot-form">

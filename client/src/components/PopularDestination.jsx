@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PopularDestinationCard from "./PopularDestinationCard";
-import { Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 
 const PopularDestination = () => {
 
@@ -20,7 +20,7 @@ const PopularDestination = () => {
 
   console.log(tourPlace)
   return (
-    <div>
+    <Container>
       <div>
         <h1>Popular Destinations</h1>
         <p>Vacations to make your experience enjoyable in Bangladesh</p>
@@ -34,7 +34,7 @@ const PopularDestination = () => {
         </Row>
       </div>
 
-    </div>
+    </Container>
   )
 }
 

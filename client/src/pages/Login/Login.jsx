@@ -9,32 +9,20 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const navigate = useNavigate();
     const location = useLocation();
-
     const from = location.state?.from?.pathname || "/";
-
-    // let location = useLocation();
-
-
-
 
     const { googleSignIn, logOut, signInEmailPasswordUser, setUser, saveUser, setIsLoading } = useAuth();
     const handleGoogleLogin = () => {
         googleSignIn()
             .then(result => {
                 setUser(result.user);
-
                 // redirect 
                 // const destination = location?.state.from || '/';
-
                 saveUser(result.user?.email, result.user?.displayName, "PUT")
                 // navigate(from);
-
                 navigate(from, { replace: true });
-
-
 
             })
             .finally(() => setIsLoading(false));
