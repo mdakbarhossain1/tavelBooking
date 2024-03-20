@@ -3,6 +3,7 @@ import heroImage from "../../assets/image/illus.png"
 import { Link } from "react-router-dom"
 import PopularDestination from "../../components/PopularDestination"
 import Testimonials from "../../components/Testimonials/Testimonials"
+import WhyUs from "../../components/WhyUs/WhyUs"
 
 const Home = () => {
     return (
@@ -30,6 +31,10 @@ const Home = () => {
             </Container>
             <div className="popularDestination my-3">
                 <PopularDestination />
+            </div>
+
+            <div>
+                <WhyUs />
             </div>
 
             <div className="my-3">

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { Container, Image, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import AdminNav from "../../components/AdminNav/AdminNav";
 
 const AllOrders = () => {
 
@@ -63,55 +63,41 @@ const AllOrders = () => {
 
 
     return (
-        <Container>
-            <div>
-                <Nav fill variant="tabs" defaultActiveKey="/home">
-                    <Nav.Item>
-                        <Nav.Link as={Link} to="/allorders">All Orders</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link as={Link} to="/allUser">All User</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link as={Link} to="/addtourplace">Add Tour Place</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item>
-                        <Nav.Link as={Link} to="/managetourplace">Manage Tour Place</Nav.Link>
-                    </Nav.Item>
-                </Nav>
-            </div>
+        <div>
+            <AdminNav />
 
-            <h2>Manage All Orders</h2>
-            <table className="table">
-                <thead className="thead-dark">
-                    <tr>
-                        <th>id</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>destination</th>
-                        <th>message</th>
-                        <th>status</th>
-                        <th>Cancel Order</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {orders?.map((item, index) => (
-                        <tr key={item._id}>
-                            <td>{index + 1}</td>
-                            <td>{item.name}</td>
-                            <td>{item.email}</td>
-                            <td>{item.destination}</td>
-                            <td>{item.message}</td>
-                            <td>{item?.status === "success" ? <button className="btn btn-success">Aproved</button> : <button className="btn btn-primary" onClick={() => handleUserUpdate(item._id)}>Aproved</button>}</td>
-                            <td><button onClick={() => handleDelete(item._id)} className="btn btn-danger">Delete</button></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </Container>
+            <div className="my-2">
+                <Container>
+                    <h2>Manage All Orders</h2>
+                    <table className="table">
+                        <thead className="thead-dark">
+                            <tr>
+                                <th>id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>destination</th>
+                                <th>message</th>
+                                <th>status</th>
+                                <th>Cancel Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders?.map((item, index) => (
+                                <tr key={item._id}>
+                                    <td>{index + 1}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.destination}</td>
+                                    <td>{item.message}</td>
+                                    <td>{item?.status === "success" ? <button className="btn btn-success">Aproved</button> : <button className="btn btn-primary" onClick={() => handleUserUpdate(item._id)}>Aproved</button>}</td>
+                                    <td><button onClick={() => handleDelete(item._id)} className="btn btn-danger">Delete</button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </Container>
+            </div>
+        </div>
     )
 }
 

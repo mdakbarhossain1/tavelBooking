@@ -1,32 +1,13 @@
-import { Button, Nav } from "react-bootstrap";
+import AdminNav from "../../components/AdminNav/AdminNav";
 import useAuth from "../../hook/useAuth"
-import { Link } from "react-router-dom";
 
 const User = () => {
   const { user } = useAuth();
   console.log(user)
   return (
     <div>
-   
-      <div>
-        <Nav fill variant="tabs" defaultActiveKey="/home">
-          <Nav.Item>
-            <Nav.Link as={Link} to="/allorders">All Orders</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/allUser">All User</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/addtourplace">Add Tour Place</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/managetourplace">Manage Tour Place</Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </div>
+
+      <AdminNav />
 
       {user.email}
 

@@ -1,7 +1,7 @@
-import { Container, Nav, Table } from "react-bootstrap"
+import { Container, Table } from "react-bootstrap"
 import useAuth from "../../hook/useAuth"
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import AdminNav from "../../components/AdminNav/AdminNav";
 
 const MyOrders = () => {
 
@@ -42,55 +42,40 @@ const MyOrders = () => {
 
     return (
         <div>
-            <div>
-        <Nav fill variant="tabs" defaultActiveKey="/home">
-          <Nav.Item>
-            <Nav.Link as={Link} to="/allorders">All Orders</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/allUser">All User</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/addtourplace">Add Tour Place</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/managetourplace">Manage Tour Place</Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </div>
-            <h1>My Orders</h1>
-            <Container>
-                <Table striped bordered hover responsive size="sm">
-                    <thead>
-                        <tr>
-                            <th>NO</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th>Cancel Order</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            myOrders?.map((md, index) => <tr key={md._id}>
-                                <td>{index + 1}</td>
-                                <td>{md?.name}</td>
-                                <td>{md?.email}</td>
-                                <td>{md?.productName}</td>
-                                <td>{md?.productPrice}</td>
-                                <td>{md?.status === "success" ? <button className="btn btn-success">Aproved</button> : <button className="btn btn-warning">Pandding</button>}</td>
-                                <td><button onClick={() => handleDelete(md._id)} className="btn btn-danger">Cencel</button></td>
-                            </tr>)
-                        }
+            <AdminNav />
 
-                    </tbody>
-                </Table>
-            </Container>
+            <div className="my-2">
+                <h1>My Orders</h1>
+                <Container>
+                    <Table striped bordered hover responsive size="sm">
+                        <thead>
+                            <tr>
+                                <th>NO</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Cancel Order</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                myOrders?.map((md, index) => <tr key={md._id}>
+                                    <td>{index + 1}</td>
+                                    <td>{md?.name}</td>
+                                    <td>{md?.email}</td>
+                                    <td>{md?.productName}</td>
+                                    <td>{md?.productPrice}</td>
+                                    <td>{md?.status === "success" ? <button className="btn btn-success">Aproved</button> : <button className="btn btn-warning">Pandding</button>}</td>
+                                    <td><button onClick={() => handleDelete(md._id)} className="btn btn-danger">Cencel</button></td>
+                                </tr>)
+                            }
+
+                        </tbody>
+                    </Table>
+                </Container>
+            </div>
         </div>
     )
 }

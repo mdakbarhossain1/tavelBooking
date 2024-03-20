@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Container, Nav, Table } from "react-bootstrap"
-import { Link, useNavigate } from "react-router-dom";
+import { Container, Table } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
+import AdminNav from "../../components/AdminNav/AdminNav";
 
 
 const ManageTourPlace = () => {
@@ -39,7 +40,7 @@ const ManageTourPlace = () => {
             })
     };
 
-    const handleUpdate = (id)=>{
+    const handleUpdate = (id) => {
         navigate(`/updatetourplace/${id}`)
     }
 
@@ -53,59 +54,43 @@ const ManageTourPlace = () => {
 
     return (
         <div>
-            <div>
-        <Nav fill variant="tabs" defaultActiveKey="/home">
-          <Nav.Item>
-            <Nav.Link as={Link} to="/allorders">All Orders</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/allUser">All User</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/myorders">My Orders</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/addtourplace">Add Tour Place</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link as={Link} to="/managetourplace">Manage Tour Place</Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </div>
-            
-            <h2>Manage Products{products.length}</h2>
-            <button onClick={addProduct} className="btn btn-success">Add Product</button>
-            <Container>
-                <Table striped bordered hover responsive size="sm">
-                    <thead>
-                        <tr>
-                            <th>NO</th>
-                            <th>Product Name</th>
-                            <th>Location</th>
-                            <th>Trip Day</th>
-                            <th>Price</th>
-                            <th>Delete Product</th>
-                            <th>Update Tour Place</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            products?.map((pd, index) => <tr key={pd._id}>
-                                <td>{index + 1}</td>
-                                <td>{pd?.name}</td>
-                                <td>{pd?.location}</td>
-                                <td>{pd?.tripday}</td>
-                                <td>{pd?.price}</td>
-                                <td><button onClick={() => handleDelete(pd._id)} className="btn btn-danger">Delete</button></td>
-                                <td><button onClick={() => handleUpdate(pd._id)} className="btn btn-warning">Update</button></td>
-                                
-                            </tr>)
-                        }
+            <AdminNav />
 
-                    </tbody>
-                </Table>
-            </Container>
+            <div className="my-2">
+                <Container>
+                    <h2>Manage Products{products.length}</h2>
+                    <button onClick={addProduct} className="btn btn-success my-2">Add Product</button>
+                    <Table striped bordered hover responsive size="sm">
+                        <thead>
+                            <tr>
+                                <th>NO</th>
+                                <th>Product Name</th>
+                                <th>Location</th>
+                                <th>Trip Day</th>
+                                <th>Price</th>
+                                <th>Delete Product</th>
+                                <th>Update Tour Place</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                products?.map((pd, index) => <tr key={pd._id}>
+                                    <td>{index + 1}</td>
+                                    <td>{pd?.name}</td>
+                                    <td>{pd?.location}</td>
+                                    <td>{pd?.tripday}</td>
+                                    <td>{pd?.price}</td>
+                                    <td><button onClick={() => handleDelete(pd._id)} className="btn btn-danger">Delete</button></td>
+                                    <td><button onClick={() => handleUpdate(pd._id)} className="btn btn-warning">Update</button></td>
+
+                                </tr>)
+                            }
+
+                        </tbody>
+                    </Table>
+                </Container>
+            </div>
         </div>
     )
 }
